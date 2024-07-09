@@ -1,13 +1,15 @@
-from util import get_client
 from resources import transcription
 import streamlit as st
 import json
 import os
+import boto3
+
+# bedrock
+session = boto3.Session()
+bedrock_runtime = session.client('bedrock-runtime')
 
 
 def get_model_response(parameter, prompt):
-    bedrock_runtime = get_client("bedrock-runtime")
-
     body = json.dumps({
         "anthropic_version": parameter["anthropic_version"],
         "max_tokens": parameter["max_tokens"],
