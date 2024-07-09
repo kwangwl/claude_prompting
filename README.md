@@ -14,6 +14,6 @@ cd fsi_prompt_demo
 4. 다음 명령어를 입력하여 실습에 필요한 종속성을 설치합니다.
 pip install -r requirements.txt
 5. 다음 명령어를 입력하여 application 을 실행합니다.
-streamlit run text_app_kr.py --server.port 8080
+streamlit run app.py --server.port 8080
 6. AWS Cloud9에서 Preview -> Preview Running Application을 선택합니다.
 7. 어플리케이션이 실행된 웹페이지가 표시됩니다.
