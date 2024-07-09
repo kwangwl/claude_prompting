@@ -79,7 +79,7 @@ def perform_task(parameter, description, button_name):
 
 
 # streamlit 앱
-st.set_page_config(page_title="FSI Gen AI 데모")
+st.set_page_config(page_title="FSI Gen AI 데모", layout='wide')
 st.title("옥탱크 보험 AI 고객 센터 [데모]")
 st.sidebar.selectbox("시나리오", ["FSI - 자동차 보험 상담"])
 
