@@ -5,10 +5,21 @@ import os
 import boto3
 
 # bedrock
-session = boto3.Session()
-bedrock_runtime = session.client('bedrock-runtime')
+if os.path.exists(".streamlit"):
+    # local
+    session = boto3.Session(
+        aws_access_key_id=st.secrets["ACCESS_KEY_ID"],
+        aws_secret_access_key=st.secrets["SECRET_ACCESS_KEY"],
+        region_name=st.secrets["REGION_NAME"],
+    )
+    bedrock_runtime = session.client('bedrock-runtime')
+else:
+    # claude9
+    session = boto3.Session()
+    bedrock_runtime = session.client('bedrock-runtime')
 
 
+# function
 def get_model_response(parameter, prompt):
     body = json.dumps({
         "anthropic_version": parameter["anthropic_version"],
