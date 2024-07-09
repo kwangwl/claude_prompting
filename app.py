@@ -5,11 +5,7 @@ import os
 import boto3
 
 # bedrock
-session = boto3.Session(
-    aws_access_key_id=st.secrets.get('ACCESS_KEY_ID', None),
-    aws_secret_access_key=st.secrets.get('SECRET_ACCESS_KEY', None),
-    region_name=st.secrets.get('REGION_NAME', None),
-)
+session = boto3.Session()
 bedrock_runtime = session.client('bedrock-runtime')
 
 
