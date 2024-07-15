@@ -1,15 +1,12 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-import contact_center
+import contact_center.app as contact_center_app
 import text_to_sql
 
 
-# app
-app_info = {
-    "1. AI 고객 센터": contact_center,
-    "2. Text to SQL": text_to_sql,
-}
+# global config
 st.set_page_config(page_title="FSI Gen AI 데모", layout='wide')
+
 # sidebar
 st.sidebar.title("FSI Gen AI 데모")
 with st.sidebar:
@@ -21,5 +18,7 @@ with st.sidebar:
         default_index=0,
     )
 
-app = app_info[choose]
-app.app()
+if choose == "1. AI 고객 센터":
+    contact_center_app.app()
+elif choose == "2. Text to SQL":
+    contact_center_app.app()
