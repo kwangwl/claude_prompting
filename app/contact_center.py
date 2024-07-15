@@ -52,12 +52,13 @@ def perform_task(task_name):
 
 
 def app():
-    # Info
+    # app info
     st.subheader("자동차 보험 상담")
     st.audio(os.path.join("resources", "contact_center_transcription.mp3"))
     with st.expander("녹취문 보기"):
         st.write(contact_center_transcription.transcription)
 
+    # task
     st.subheader("작업")
     summary, note, reply, quality = st.tabs(list(TASK_INFO.keys()))
     with summary:
