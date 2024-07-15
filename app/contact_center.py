@@ -25,7 +25,7 @@ def perform_task(task_name):
     with st.expander("Claude Setting"):
         max_token = st.number_input(label="Max Token", min_value=0, step=1, max_value=4096, value=2048,
                                     key=f'mt_{task_name}', disabled=True)
-        temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.3, key=f't_{task_name}',
+        temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.0, key=f't_{task_name}',
                                 disabled=True)
         top_p = st.number_input(label="Top P", min_value=0.000, step=0.001, max_value=1.000, value=0.999, format="%f",
                                 key=f'tp_{task_name}', disabled=True)

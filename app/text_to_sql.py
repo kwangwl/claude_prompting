@@ -18,7 +18,7 @@ def app():
     model_name = st.selectbox("Select Model (Claude 3)", list(MODEL_ID_INFO.keys()))
     with st.expander("Claude Setting"):
         max_token = st.number_input(label="Max Token", min_value=0, step=1, max_value=4096, value=2048, disabled=True)
-        temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.3, disabled=True)
+        temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.0, disabled=True)
         top_p = st.number_input(label="Top P", min_value=0.000, step=0.001, max_value=1.000, value=0.999, format="%f",
                                 disabled=True)
     prompt_input = st.text_area("Prompt 입력")
