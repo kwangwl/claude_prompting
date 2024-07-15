@@ -1,4 +1,4 @@
-from common.session import get_client
+from modules.session import get_client
 import json
 
 

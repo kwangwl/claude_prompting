@@ -1,7 +1,6 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-import contact_center.app as contact_center_app
-import text_to_sql
+from app import contact_center
 
 
 # global config
@@ -19,6 +18,6 @@ with st.sidebar:
     )
 
 if choose == "1. AI 고객 센터":
-    contact_center_app.app()
+    contact_center.app()
 elif choose == "2. Text to SQL":
-    contact_center_app.app()
+    contact_center.app()

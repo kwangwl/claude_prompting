@@ -1,7 +1,7 @@
-from contact_center.resources import transcription
+from resources import contact_center_transcription
 import streamlit as st
 import os
-from common.bedrock import get_model_streaming_response, MODEL_ID_INFO, parse_stream
+from modules.bedrock import get_model_streaming_response, MODEL_ID_INFO, parse_stream
 
 
 def perform_task(key, description, button_name):
@@ -28,7 +28,7 @@ def perform_task(key, description, button_name):
     prompt_input = st.text_area("Prompt 입력", key=key)
 
     if st.button(button_name):
-        prompt = f"<transcript>에는 상담원과 고객간의 통화 녹취가 기록되어 있습니다.\n<transcript>{transcription.transcription}</transcript>\n이 녹취를 읽고 답변해주세요.\n{prompt_input}"
+        prompt = f"<transcript>에는 상담원과 고객간의 통화 녹취가 기록되어 있습니다.\n<transcript>{contact_center_transcription.transcription}</transcript>\n이 녹취를 읽고 답변해주세요.\n{prompt_input}"
         streaming_response = get_model_streaming_response(parameter, prompt)
         stream = streaming_response.get("body")
 
@@ -45,9 +45,9 @@ def app():
 
     # Info
     st.subheader("자동차 보험 상담")
-    st.audio(os.path.join("contact_center", "resources", "transcription.mp3"))
+    st.audio(os.path.join("resources", "contact_center_transcription.mp3"))
     with st.expander("녹취문 보기"):
-        st.write(transcription.transcription)
+        st.write(contact_center_transcription.transcription)
 
     st.subheader("작업")
     summary, note, reply, quality = st.tabs(["요약", "상담노트", "메일 회신", "상담품질"])
