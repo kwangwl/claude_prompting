@@ -1,56 +1,50 @@
 context = """
 <scheme>
 Customers:
-- customer_id (INT, PRIMARY KEY)
-- first_name (VARCHAR)
-- last_name (VARCHAR)
-- email (VARCHAR)
-- phone (VARCHAR)
-- address (VARCHAR)
-- city (VARCHAR)
-- state (VARCHAR)
-- zip_code (VARCHAR)
-- birth_day (DATE)
+- customer_id INTEGER PRIMARY KEY
+- first_name TEXT
+- last_name TEXT
+- email TEXT
+- phone TEXT
+- address TEXT
+- city TEXT
+- zip_code TEXT
+- birth_day DATE
 
 Products:
-- product_id (INT, PRIMARY KEY)
-- product_name (VARCHAR)
-- description (TEXT)
-- category (VARCHAR)
-- price (DECIMAL)
-- stock_quantity (INT)
+- product_id INTEGER PRIMARY KEY
+- product_name TEXT
+- description TEXT
+- category TEXT
+- price INTEGER
+- stock_quantity INTEGER
 
 Orders:
-- order_id (INT, PRIMARY KEY)
-- customer_id (INT, FOREIGN KEY REFERENCES Customers)
-- order_date (DATE)
-- total_amount (DECIMAL) # 총 주문금액
-- status (VARCHAR) # 주문상태 : 주문생성/결제완료/배송완료
+- order_id INTEGER PRIMARY KEY
+- customer_id INTEGER
+- order_date DATE
+- total_amount INTEGER
+- status TEXT
+- FOREIGN KEY (customer_id) REFERENCES Customers (customer_id)
 
 Order_Items:
-- order_item_id (INT, PRIMARY KEY)
-- order_id (INT, FOREIGN KEY REFERENCES Orders)
-- product_id (INT, FOREIGN KEY REFERENCES Products)
-- quantity (INT)
-- price (DECIMAL)
+- order_item_id INTEGER PRIMARY KEY
+- order_id INTEGER
+- product_id INTEGER
+- quantity INTEGER
+- price REAL
+- FOREIGN KEY (order_id) REFERENCES Orders (order_id)
+- FOREIGN KEY (product_id) REFERENCES Product (product_id)
 
 Reviews:
-- review_id (INT, PRIMARY KEY)
-- product_id (INT, FOREIGN KEY REFERENCES Products)
-- customer_id (INT, FOREIGN KEY REFERENCES Customers)
-- rating (INT)
-- comment (TEXT)
-- review_date (DATE)
+- review_id INTEGER PRIMARY KEY,
+- product_id INTEGER,
+- customer_id INTEGER,
+- rating INTEGER,
+- comment TEXT,
+- review_date DATE,
+- FOREIGN KEY (product_id) REFERENCES Product (product_id),
+- FOREIGN KEY (customer_id) REFERENCES Customers (customer_id)
 
-Employees:
-- employee_id (INT, PRIMARY KEY)
-- first_name (VARCHAR)
-- last_name (VARCHAR)
-- email (VARCHAR)
-- phone (VARCHAR)
-- hire_date (DATE)
-- job_title (VARCHAR)
-- department (VARCHAR)
-- salary (DECIMAL)
 </scheme>
 """

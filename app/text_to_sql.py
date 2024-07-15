@@ -26,7 +26,7 @@ def app():
     # action
     st.subheader("자연어 쿼리 입력")
     with st.expander("Query 예시"):
-        st.text("모든 직원의 이름과 급여\n모든 프로젝트의 이름과 시작일\nJohn Doe가 속한 프로젝트와 그의 역할")
+        st.text("주문 ID가 1인 주문 항목의 제품 이름과 수량\n가격이 20보다 큰 모든 제품\n2023년 1월 1일 이후에 작성된 모든 리뷰")
     user_query = st.text_input("Query:")
 
     # button
@@ -53,15 +53,6 @@ def app():
         except Exception as e:
             st.write("에러 발생:")
             st.error(str(e))
-
-            # 오류 수정 로직 추가 가능
-            corrected_sql = generated_sql.replace("employees", "corrected_employees")
-            st.write("수정된 SQL:")
-            st.code(corrected_sql, language='sql')
-
-            result = query_sqlite(corrected_sql)
-            st.write("수정된 쿼리 결과:")
-            st.dataframe(result)
 
         with st.expander("Bedrock Parameter"):
             st.json({**parameter, "prompt": prompt})

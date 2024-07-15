@@ -9,16 +9,22 @@
 </conditions>
 
 <example>
-Human: "모든 직원의 이름과 급여"
-Assistant: SELECT first_name, last_name, salary FROM Employees;
-Human: "2020년 이후에 고용된 모든 직원 목록"
-Assistant: SELECT * FROM Employees WHERE hire_date >= '2020-01-01';
-Human: "모든 부서의 이름과 ID"
-Assistant: SELECT department_id, department_name FROM Departments;
-Human: "모든 프로젝트의 이름과 시작일"
-Assistant: SELECT project_name, start_date FROM Projects;
-Human: "John Doe가 속한 프로젝트와 그의 역할"
-Assistant: SELECT Projects.project_name, EmployeeProjects.role FROM Employees JOIN EmployeeProjects ON Employees.employee_id = EmployeeProjects.employee_id JOIN Projects ON EmployeeProjects.project_id = Projects.project_id WHERE Employees.first_name = 'John' AND Employees.last_name = 'Doe';
-Human: "Finance 부서의 모든 직원 이름"
-Assistant: SELECT Employees.first_name, Employees.last_name FROM Employees JOIN Departments ON Employees.department_id = Departments.department_id WHERE Departments.department_name = 'Finance';
+Human: 가격이 20보다 큰 모든 제품
+Assistant: SELECT * FROM Products WHERE price > 20;
+Human: 고객 ID가 1인 모든 주문
+Assistant: SELECT * FROM Orders WHERE customer_id = 1;
+Human: 주문 ID가 1인 주문 항목의 제품 이름과 수량
+Assistant: SELECT Products.product_name, Order_Items.quantity FROM Order_Items JOIN Products ON Order_Items.product_id = Products.product_id WHERE Order_Items.order_id = 1;
+Human: 평점이 5인 모든 리뷰
+Assistant: SELECT * FROM Reviews WHERE rating = 5;
+Human: Some City 에 있는 모든 고객의 성과 이메일 주소
+Assistant: SELECT last_name, email FROM Customers WHERE city = 'Some City';
+Human: 각 주문의 고객 이름과 총 금액
+Assistant: SELECT Customers.first_name, Orders.total_amount FROM Orders JOIN Customers ON Orders.customer_id = Customers.customer_id;
+Human: John Doe가 작성한 모든 리뷰
+Assistant: SELECT * FROM Reviews WHERE customer_id = (SELECT customer_id FROM Customers WHERE first_name = 'John' AND last_name = 'Doe');
+Human: 2023년 1월 1일 이후에 작성된 모든 리뷰
+Assistant: SELECT * FROM Reviews WHERE review_date >= '2023-01-01';
+Human: 재고가 50개 이상인 모든 제품
+Assistant: SELECT Products.product_name, Order_Items.quantity FROM Order_Items JOIN Products ON Order_Items.product_id = Products.product_id WHERE Order_Items.order_id = 1;
 </example>
