@@ -40,9 +40,6 @@ def perform_task(key, description, button_name):
 
 
 def app():
-    # streamlit 앱
-    st.title("옥탱크 보험 AI 고객 센터 [데모]")
-
     # Info
     st.subheader("자동차 보험 상담")
     st.audio(os.path.join("resources", "contact_center_transcription.mp3"))

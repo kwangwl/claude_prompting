@@ -8,6 +8,34 @@ MODEL_ID_INFO = {
 }
 
 
+def get_model_response(parameter, prompt):
+    bedrock_runtime = get_client('bedrock-runtime')
+
+    body = json.dumps({
+        "anthropic_version": parameter["anthropic_version"],
+        "max_tokens": parameter["max_tokens"],
+        "temperature": parameter["temperature"],
+        "top_p": parameter["top_p"],
+        "messages": [
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": prompt
+                    }
+                ]
+            }
+        ],
+    })
+
+    response = bedrock_runtime.invoke_model(body=body, modelId=parameter["model_id"])
+    response_body = json.loads(response.get('body').read())  # response 읽기
+    result = response_body.get("content")[0].get("text")
+
+    return result
+
+
 def get_model_streaming_response(parameter, prompt):
     bedrock_runtime = get_client('bedrock-runtime')
 
