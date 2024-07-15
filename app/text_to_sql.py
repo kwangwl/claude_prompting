@@ -14,11 +14,7 @@ def generate_sql_from_text(parameter, prompt_input, user_query):
 
 def app():
     st.subheader("데이터베이스 (SQLite)")
-    with st.expander("Database 관계도"):
-        st.image(os.path.join("resources", "text_to_sql_db.png"))
-
-    with st.expander("Query 예시"):
-        st.text("모든 직원의 이름과 급여\n모든 프로젝트의 이름과 시작일\nJohn Doe가 속한 프로젝트와 그의 역할")
+    st.image(os.path.join("resources", "text_to_sql_db.png"))
 
     st.subheader("작업")
     # bedrock setting
@@ -31,6 +27,8 @@ def app():
     prompt_input = st.text_area("Prompt 입력")
 
     st.subheader("자연어 쿼리 입력")
+    with st.expander("Query 예시"):
+        st.text("모든 직원의 이름과 급여\n모든 프로젝트의 이름과 시작일\nJohn Doe가 속한 프로젝트와 그의 역할")
     user_query = st.text_input("쿼리:")
     if st.button("SQL 생성 및 데이터 쿼리"):
         parameter = {
