@@ -21,3 +21,4 @@ if choose == "1. AI 고객 센터":
     contact_center.app()
 elif choose == "2. Text to SQL":
     text_to_sql.app()
+

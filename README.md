@@ -12,12 +12,10 @@ FSI Prompt 데모
 - cd fsi_prompt_demo
 4. 다음 명령어를 입력하여 실습에 필요한 종속성을 설치합니다.
 - pip install -r requirements.txt
-5. 다음 명령어를 입력하여 샘플 db 를 생성합니다 (sqlite)
-- python create_db.py
-6. 다음 명령어를 입력하여 application 을 실행합니다.
+5. 다음 명령어를 입력하여 application 을 실행합니다.
 - streamlit run home.py --server.port 8080
-7. AWS Cloud9에서 Preview -> Preview Running Application을 선택합니다.
-8.어플리케이션이 실행된 웹페이지가 표시됩니다.
+6. AWS Cloud9에서 Preview -> Preview Running Application을 선택합니다.
+7.어플리케이션이 실행된 웹페이지가 표시됩니다.
 
 Ref
 1. https://fsi-demo.mobilebigbang.com/

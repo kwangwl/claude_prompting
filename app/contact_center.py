@@ -12,6 +12,7 @@ TASK_INFO = {
     "메일 회신": ["고객에게 전달할 회신 메일을 생성하세요.", "회신 메일 생성"],
     "상담 품질": ["녹취에 대한 상세한 규정준수 및 품질을 검토합니다.", "상담 품질 검토 실행"]
 }
+SYSTEM = f"<transcript>에는 상담원과 고객간의 통화 녹취가 기록되어 있습니다. 이 녹취를 읽고 답변해주세요.\n\n<transcript>{contact_center_transcription.transcription}</transcript>\n"
 
 
 def perform_task(task_name):
@@ -29,7 +30,8 @@ def perform_task(task_name):
                                 disabled=True)
         top_p = st.number_input(label="Top P", min_value=0.000, step=0.001, max_value=1.000, value=0.999, format="%f",
                                 key=f'tp_{task_name}', disabled=True)
-    prompt_input = st.text_area("Prompt 입력", key=f'ta_{task_name}')
+
+    prompt_input = st.text_area("User Prompt 입력", key=f'ta_{task_name}', height=400)
 
     # button
     if st.button(button_name):
@@ -41,14 +43,12 @@ def perform_task(task_name):
             "top_p": top_p,
         }
         prompt = f"<transcript>에는 상담원과 고객간의 통화 녹취가 기록되어 있습니다.\n<transcript>{contact_center_transcription.transcription}</transcript>\n이 녹취를 읽고 답변해주세요.\n{prompt_input}"
-        streaming_response = get_model_streaming_response(parameter, prompt)
+        streaming_response = get_model_streaming_response(parameter, SYSTEM, prompt)
 
         # output
         stream = streaming_response.get("body")
         with st.spinner("Processing..."):
             st.write_stream(parse_stream(stream))
-        with st.expander("Bedrock Parameter"):
-            st.json({**parameter, "prompt": prompt})
 
 
 def app():
@@ -57,6 +57,8 @@ def app():
     st.audio(os.path.join("resources", "contact_center_transcription.mp3"))
     with st.expander("녹취문 보기"):
         st.write(contact_center_transcription.transcription)
+    with st.expander("System Prompt"):
+        st.write(SYSTEM)
 
     # task
     st.subheader("작업")

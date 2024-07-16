@@ -1,30 +1,56 @@
-<schema> 에는 데이터베이스의 테이블 정보를 포함하고 있습니다.
-당신은 sqlite 데이터베이스 전문가 로써 주어진 입력에 대해 올바른 sqlite 쿼리를 생성하세요.
-<conditions>에 있는 조건을 준수해 주세요.
-답변의 예시인 아래 <example>을 참고 하세요.
+# 1
+<request>에서 요구하는 쿼리를 작성해주세요. <condition>에 있는 조건을 준수해야 합니다.
 
-<conditions>
-쿼리 생성에 가장 관련 있는 테이블을 사용해 주세요.
-쿼리만 답변으로 출력해주세요
-</conditions>
+<requests>
+입력한 기간 내에서 주문은 했지만 리뷰를 남기지 않은 고객 목록과 주문에 지출한 총 금액을 추출하는 쿼리를 작성해주세요.
+</requests>
 
-<example>
-Human: 가격이 20보다 큰 모든 제품
-Assistant: SELECT * FROM Products WHERE price > 20;
-Human: 고객 ID가 1인 모든 주문
-Assistant: SELECT * FROM Orders WHERE customer_id = 1;
-Human: 주문 ID가 1인 주문 항목의 제품 이름과 수량
-Assistant: SELECT Products.product_name, Order_Items.quantity FROM Order_Items JOIN Products ON Order_Items.product_id = Products.product_id WHERE Order_Items.order_id = 1;
-Human: 평점이 5인 모든 리뷰
-Assistant: SELECT * FROM Reviews WHERE rating = 5;
-Human: Some City 에 있는 모든 고객의 성과 이메일 주소
-Assistant: SELECT last_name, email FROM Customers WHERE city = 'Some City';
-Human: 각 주문의 고객 이름과 총 금액
-Assistant: SELECT Customers.first_name, Orders.total_amount FROM Orders JOIN Customers ON Orders.customer_id = Customers.customer_id;
-Human: John Doe가 작성한 모든 리뷰
-Assistant: SELECT * FROM Reviews WHERE customer_id = (SELECT customer_id FROM Customers WHERE first_name = 'John' AND last_name = 'Doe');
-Human: 2023년 1월 1일 이후에 작성된 모든 리뷰
-Assistant: SELECT * FROM Reviews WHERE review_date >= '2023-01-01';
-Human: 재고가 50개 이상인 모든 제품
-Assistant: SELECT Products.product_name, Order_Items.quantity FROM Order_Items JOIN Products ON Order_Items.product_id = Products.product_id WHERE Order_Items.order_id = 1;
-</example>
+<condition>
+시작과 종료 기간은 각각 start_date, end_date라는 변수로 입력되도록 해주세요.
+Amazon Redshift에 적용할 수 있는 쿼리로 작성해주세요
+사용자 정의함수로 만들지 않습니다.
+</condition>
+
+# 2
+<request>에서 요구하는 쿼리를 작성해주세요. <condition>에 있는 조건을 준수해야 합니다.
+
+<requests>
+2023년 1월부터 2023년 5월 사이에 "Kids" 카테고리의 상품을 주문한 고객들의 연령대 분포를 추출하는 쿼리를 작성해주세요.
+</requests>
+
+<condition>
+시작과 종료 기간은 각각 start_date, end_date라는 변수로 입력되도록 해주세요.
+연령대는 10살 단위로 하되, 성인의 기준은 20세입니다. 
+Amazon Redshift에 적용할 수 있는 쿼리로 작성해주세요
+사용자 정의함수로 만들지 않습니다.
+</condition>
+
+# 3
+<request>에서 요구하는 쿼리를 작성해주세요. <condition>에 있는 조건을 준수해야 합니다.
+
+<requests>
+최근 1달 사이에 "Kids" 카테고리의 상품을 주문한 고객들의 연령대 분포를 추출하는 쿼리를 작성해주세요.
+</requests>
+
+<condition>
+최근 1달을 먼저 계산하여 변수로 만든 뒤, 본 쿼리에서 사용하도록 해주세요.
+연령대는 10살 단위로 하되, 성인의 기준은 20세입니다. 
+Amazon Redshift에 적용할 수 있는 쿼리로 작성해주세요
+사용자 정의함수로 만들지 않습니다.
+</condition>
+
+# 4
+<request>에서 요구하는 쿼리를 작성해주세요. <condition>에 있는 조건을 준수해야 합니다.
+
+<requests>
+최근 1달 사이에 "Kids" 카테고리의 상품을 20만원 이상 주문한 고객들의 연령대 분포를 추출하는 쿼리를 작성해주세요.
+</requests>
+
+<condition>
+최근 1달을 먼저 계산하여 변수로 만든 뒤, 본 쿼리에서 사용하도록 해주세요.
+연령대는 10살 단위로 합니다.
+각 연령대의 시작은 1부터 시작합니다. 예를 들어 30대는 31살부터 40살까지를 의미합니다.
+20세 이하는 '10대'로 표시합니다.
+Amazon Redshift에 적용할 수 있는 쿼리로 작성해주세요
+사용자 정의함수로 만들지 않습니다.
+</condition>
