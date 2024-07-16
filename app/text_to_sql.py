@@ -24,7 +24,7 @@ def app():
         top_p = st.number_input(label="Top P", min_value=0.000, step=0.001, max_value=1.000, value=0.999, format="%f",
                                 disabled=True)
 
-    prompt_input = st.text_area("User Prompt 입력", height=400)
+    prompt_input = st.text_area("User Prompt 입력", height=300)
 
     # button
     if st.button("쿼리 생성"):

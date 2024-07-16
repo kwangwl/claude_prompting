@@ -1,9 +1,9 @@
 # 1
 <request>에서 요구하는 쿼리를 작성해주세요. <condition>에 있는 조건을 준수해야 합니다.
 
-<requests>
+<request>
 입력한 기간 내에서 주문은 했지만 리뷰를 남기지 않은 고객 목록과 주문에 지출한 총 금액을 추출하는 쿼리를 작성해주세요.
-</requests>
+</request>
 
 <condition>
 시작과 종료 기간은 각각 start_date, end_date라는 변수로 입력되도록 해주세요.
@@ -14,9 +14,9 @@ Amazon Redshift에 적용할 수 있는 쿼리로 작성해주세요
 # 2
 <request>에서 요구하는 쿼리를 작성해주세요. <condition>에 있는 조건을 준수해야 합니다.
 
-<requests>
+<request>
 2023년 1월부터 2023년 5월 사이에 "Kids" 카테고리의 상품을 주문한 고객들의 연령대 분포를 추출하는 쿼리를 작성해주세요.
-</requests>
+</request>
 
 <condition>
 시작과 종료 기간은 각각 start_date, end_date라는 변수로 입력되도록 해주세요.
@@ -28,9 +28,9 @@ Amazon Redshift에 적용할 수 있는 쿼리로 작성해주세요
 # 3
 <request>에서 요구하는 쿼리를 작성해주세요. <condition>에 있는 조건을 준수해야 합니다.
 
-<requests>
+<request>
 최근 1달 사이에 "Kids" 카테고리의 상품을 주문한 고객들의 연령대 분포를 추출하는 쿼리를 작성해주세요.
-</requests>
+</request>
 
 <condition>
 최근 1달을 먼저 계산하여 변수로 만든 뒤, 본 쿼리에서 사용하도록 해주세요.
@@ -42,9 +42,9 @@ Amazon Redshift에 적용할 수 있는 쿼리로 작성해주세요
 # 4
 <request>에서 요구하는 쿼리를 작성해주세요. <condition>에 있는 조건을 준수해야 합니다.
 
-<requests>
+<request>
 최근 1달 사이에 "Kids" 카테고리의 상품을 20만원 이상 주문한 고객들의 연령대 분포를 추출하는 쿼리를 작성해주세요.
-</requests>
+</request>
 
 <condition>
 최근 1달을 먼저 계산하여 변수로 만든 뒤, 본 쿼리에서 사용하도록 해주세요.
