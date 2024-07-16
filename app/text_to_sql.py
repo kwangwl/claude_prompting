@@ -1,6 +1,5 @@
 import streamlit as st
-from modules.bedrock import get_model_response, MODEL_ID_INFO
-from modules.database import query_sqlite
+from modules.bedrock import get_model_streaming_response, MODEL_ID_INFO, parse_stream
 from resources.text_to_sql_system import system
 import os
 
@@ -35,7 +34,10 @@ def app():
             "temperature": temperature,
             "top_p": top_p,
         }
-        generated_sql = get_model_response(parameter, system, prompt_input)
+        streaming_response = get_model_streaming_response(parameter, system, prompt_input)
 
+        # output
+        stream = streaming_response.get("body")
         st.write("생성된 SQL:")
-        st.code(generated_sql, language='sql')
+        with st.spinner("Processing..."):
+            st.write_stream(parse_stream(stream))
