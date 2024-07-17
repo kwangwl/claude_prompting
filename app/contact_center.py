@@ -18,6 +18,8 @@ SYSTEM = f"<transcript>에는 상담원과 고객간의 통화 녹취가 기록�
 def perform_task(task_name):
     description, button_name = TASK_INFO[task_name]
 
+    if f'ta_{task_name}' not in st.session_state:
+        st.session_state[f'ta_{task_name}'] = "Prompt를 입력하세요."
     # description
     st.write(description)
 
@@ -30,8 +32,8 @@ def perform_task(task_name):
                                 disabled=True)
         top_p = st.number_input(label="Top P", min_value=0.000, step=0.001, max_value=1.000, value=0.999, format="%f",
                                 key=f'tp_{task_name}', disabled=True)
-
-    prompt_input = st.text_area("User Prompt 입력", key=f'ta_{task_name}', height=400)
+    prompt_input = st.text_area("User Prompt 입력", key=f'ta_{task_name}', height=400,
+                                value=st.session_state[f'ta_{task_name}'])
 
     # button
     if st.button(button_name):
