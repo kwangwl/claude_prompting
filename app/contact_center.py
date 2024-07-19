@@ -12,7 +12,14 @@ TASK_INFO = {
     "3. 메일 회신": ["reply", "고객에게 전달할 회신 메일을 생성하세요.", "회신 메일 생성"],
     "4. 상담 품질": ["quality", "녹취에 대한 상세한 규정준수 및 품질을 검토합니다.", "상담 품질 검토 실행"]
 }
-SYSTEM = f"<transcript>에는 상담원과 고객간의 통화 녹취가 기록되어 있습니다. 이 녹취를 읽고 답변해주세요.\n\n<transcript>{contact_center_transcription.transcription}</transcript>\n"
+
+SYSTEM = f"""
+<transcript> 에는 상담원과 고객간의 통화 녹취가 기록되어 있습니다. 이 녹취를 읽고 답변해주세요.
+
+<transcript>
+{contact_center_transcription.transcription}
+</transcript>
+"""
 
 
 def perform_task(task_name):
@@ -76,14 +83,3 @@ def app():
     st.subheader("작업")
     scenario_name = st.selectbox("시나리오 선택", list(TASK_INFO.keys()))
     perform_task(scenario_name)
-    """
-    summary, note, reply, quality = st.tabs(list(TASK_INFO.keys()))
-    with summary:
-        perform_task("요약")
-    with note:
-        perform_task("상담 노트")
-    with reply:
-        perform_task("메일 회신")
-    with quality:
-        perform_task("상담 품질")
-    """

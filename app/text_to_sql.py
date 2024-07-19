@@ -5,7 +5,13 @@ import os
 
 
 # config
-SYSTEM = f"아래 <scheme>에는 테이블 스키마 정보를 포함하고 있습니다. 이 스키마 정보를 기반으로 쿼리를 작성해주세요.\n\n<scheme>\n{schema}</scheme>\n"
+SYSTEM = f"""
+아래 <scheme>에는 테이블 스키마 정보를 포함하고 있습니다. 이 스키마 정보를 기반으로 쿼리를 작성해주세요.
+
+<scheme>
+{schema}
+</scheme>
+"""
 
 
 def app():
