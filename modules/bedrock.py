@@ -37,7 +37,7 @@ def get_model_response(parameter, system, prompt):
     return result
 
 
-def get_model_streaming_response(parameter, system, prompt):
+def get_model_streaming_response(parameter, prompt):
     bedrock_runtime = get_client('bedrock-runtime')
 
     body = json.dumps({
@@ -45,7 +45,6 @@ def get_model_streaming_response(parameter, system, prompt):
         "max_tokens": parameter["max_tokens"],
         "temperature": parameter["temperature"],
         "top_p": parameter["top_p"],
-        "system": system,
         "messages": [
             {
                 "role": "user",
