@@ -3,10 +3,16 @@
 ## 실습 환경조건
 1. AWS Cloud9 (us-west-2 리전, bedrock claude3 지원 리전)
 2. bedrock model access - claude3 sonnet
-3. (**local Only**, Cloud9 사용시 불필요) .streamlit 폴더 및 secrets.toml 파일 생성
-- 로컬에서 구동시 access key 등을 관리하는 .streamlit 폴더 생성 필요
-- 아래와 같이 .streamlit -> secrets.toml 파일 생성후, 아래 3가지 변수 설정
-![Picture1](/static/secrets.png)
+
+<details>
+  <summary><b>local Only</b>, Cloud9 사용시 불필요</summary>
+    <p>
+        - streamlit 폴더 및 secrets.toml 파일 생성
+        - 로컬에서 구동시 access key 등을 관리하는 .streamlit 폴더 생성 필요
+        - 아래와 같이 .streamlit -> secrets.toml 파일 생성후, 아래 3가지 변수 설정
+        ![Picture1](/static/secrets.png)
+    </p>
+</details>
 
 ## 실습 환경설정
 1. AWS Cloud9 IDE에서 bash terminal을 선택합니다.
