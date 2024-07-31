@@ -10,9 +10,9 @@
 
 <p>
     <ol>
-        <li> streamlit 폴더 및 secrets.toml 파일 생성
-        <li> 로컬에서 구동시 access key 등을 관리하는 .streamlit 폴더 생성 필요
-        <li> 아래와 같이 .streamlit -> secrets.toml 파일 생성후, 아래 3가지 변수 설정<p>
+        <li> <b>.streamlit</b> 폴더 및 <b>secrets.toml</b> 파일 생성
+        <li> 로컬에서 구동시 access key 등을 관리하는 <b>.streamlit</b> 폴더 생성 필요
+        <li> 아래와 같이 <b>.streamlit -> secrets.toml</b> 파일 생성후, 아래 3가지 변수 설정<p>
         <img src="./static/secrets.png">
     </ol>
 </p>
