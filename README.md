@@ -5,7 +5,7 @@ FSI Prompt 데모
 2. bedrock model access - claude3 sonnet
 3. (**local Only**, Cloud9 사용시 불필요) .streamlit 폴더 생성
 - 로컬에서 구동시 access key 등을 관리하는 .streamlit 폴더 생성 필요
-- 아래와 같이 .streamlit -> serects.toml 파일 생성후, 아래 3가지 변수 설정
+- 아래와 같이 .streamlit -> secrets.toml 파일 생성후, 아래 3가지 변수 설정
 ![Picture1](/static/secrets.png)
 
 실습 환경설정
