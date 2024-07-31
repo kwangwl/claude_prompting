@@ -1,6 +1,6 @@
-FSI Prompt 데모
+# FSI Prompt 데모
 
-실습 환경조건
+## 실습 환경조건
 1. AWS Cloud9 (us-west-2 리전, bedrock claude3 지원 리전)
 2. bedrock model access - claude3 sonnet
 3. (**local Only**, Cloud9 사용시 불필요) .streamlit 폴더 생성
@@ -8,7 +8,7 @@ FSI Prompt 데모
 - 아래와 같이 .streamlit -> secrets.toml 파일 생성후, 아래 3가지 변수 설정
 ![Picture1](/static/secrets.png)
 
-실습 환경설정
+## 실습 환경설정
 1. AWS Cloud9 IDE에서 bash terminal을 선택합니다.
 2. 터미널에 다음을 붙여넣고 실행하여 git 코드를 다운로드 받습니다.
 - git clone https://github.com/kwangwl/fsi_prompt_demo.git
@@ -21,5 +21,5 @@ FSI Prompt 데모
 6. AWS Cloud9에서 Preview -> Preview Running Application을 선택합니다.
 7.어플리케이션이 실행된 웹페이지가 표시됩니다.
 
-Ref
+## Ref
 1. https://fsi-demo.mobilebigbang.com/
