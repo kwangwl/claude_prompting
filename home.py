@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-from app import contact_center, text_to_sql, image_analyzer
+from app import contact_center, text_to_sql, vision_analyzer
 
 
 # global config
@@ -22,4 +22,4 @@ if choose == "1. AI 고객 센터":
 elif choose == "2. Text to SQL":
     text_to_sql.app()
 elif choose == "3. Image Analyzer":
-    image_analyzer.app()
+    vision_analyzer.app()

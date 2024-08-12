@@ -93,12 +93,10 @@ def get_model_image_response(parameter, prompt, image_type, image_bytes):
             }
         ],
     })
+    streaming_response = bedrock_runtime.invoke_model_with_response_stream(body=body, modelId=parameter["model_id"])
 
-    response = bedrock_runtime.invoke_model(body=body, modelId=parameter["model_id"])
-    response_body = json.loads(response.get('body').read())  # response 읽기
-    result = response_body.get("content")[0].get("text")
+    return streaming_response
 
-    return result
 
 
 def parse_stream(stream):
