@@ -12,7 +12,7 @@ with st.sidebar:
     # https://icons.getbootstrap.com/
     choose = option_menu(
         menu_title=None,
-        options=["1. AI 고객 센터", "2. Text to SQL", "3. Image Analyzer"],
+        options=["1. AI 고객 센터", "2. Text to SQL", "3. Vision Analyzer"],
         icons=['kanban', 'magic', 'image'],
         default_index=0,
     )
@@ -21,5 +21,5 @@ if choose == "1. AI 고객 센터":
     contact_center.app()
 elif choose == "2. Text to SQL":
     text_to_sql.app()
-elif choose == "3. Image Analyzer":
+elif choose == "3. Vision Analyzer":
     vision_analyzer.app()
