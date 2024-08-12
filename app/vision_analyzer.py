@@ -12,7 +12,7 @@ IMAGE_FILES = [f for f in os.listdir(BASE_IMAGE_PATH) if os.path.isfile(os.path.
 # Streamlit 앱
 def app():
     # app info
-    st.subheader("Image Analyzer")
+    st.subheader("Vision Analyzer")
 
     if 'session_vision_analyzer' not in st.session_state:
         st.session_state['session_vision_analyzer'] = "Prompt를 입력하세요."
