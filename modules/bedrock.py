@@ -1,4 +1,5 @@
 from modules.session import get_client
+from modules.image import get_base64_from_bytes
 import json
 
 
@@ -62,6 +63,42 @@ def get_model_streaming_response(parameter, prompt):
     streaming_response = bedrock_runtime.invoke_model_with_response_stream(body=body, modelId=parameter["model_id"])
 
     return streaming_response
+
+
+def get_model_image_response(parameter, prompt, image_type, image_bytes):
+    bedrock_runtime = get_client('bedrock-runtime')
+    input_image_base64 = get_base64_from_bytes(image_bytes)
+
+    body = json.dumps({
+        "anthropic_version": parameter["anthropic_version"],
+        "max_tokens": parameter["max_tokens"],
+        "temperature": parameter["temperature"],
+        "messages": [
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "image",
+                        "source": {
+                            "type": "base64",
+                            "media_type": image_type,
+                            "data": input_image_base64,
+                        },
+                    },
+                    {
+                        "type": "text",
+                        "text": prompt
+                    }
+                ],
+            }
+        ],
+    })
+
+    response = bedrock_runtime.invoke_model(body=body, modelId=parameter["model_id"])
+    response_body = json.loads(response.get('body').read())  # response 읽기
+    result = response_body.get("content")[0].get("text")
+
+    return result
 
 
 def parse_stream(stream):
