@@ -5,7 +5,7 @@ from modules.bedrock import MODEL_ID_INFO, get_model_image_response, parse_strea
 
 
 # config
-BASE_IMAGE_PATH = "visioning/images/"
+BASE_IMAGE_PATH = "resources/vision/"
 IMAGE_FILES = [f for f in os.listdir(BASE_IMAGE_PATH) if os.path.isfile(os.path.join(BASE_IMAGE_PATH, f))]
 
 
