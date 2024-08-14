@@ -1,6 +1,6 @@
 import streamlit as st
 from modules.bedrock import get_model_streaming_response, MODEL_ID_INFO, parse_stream
-from resources.text_to_sql_db import schema
+from resources.text_to_sql.text_to_sql_db import schema
 import os
 
 
@@ -18,7 +18,7 @@ def app():
     # app info
     st.subheader("데이터베이스 (SQLite)")
     with st.expander("데이터베이스 보기"):
-        st.image(os.path.join("resources", "text_to_sql_db.png"))
+        st.image(os.path.join("resources", "text_to_sql", "text_to_sql_db.png"))
     with st.expander("System Prompt"):
         st.write(SYSTEM)
 

@@ -1,4 +1,4 @@
-from resources import contact_center_transcription
+from resources.contact_center import contact_center_transcription
 import streamlit as st
 import os
 from modules.bedrock import get_model_streaming_response, MODEL_ID_INFO, parse_stream
@@ -77,7 +77,7 @@ def app():
         st.subheader("자동차 보험 상담")
     with col2:
         st.link_button("FSI 데모 링크", "https://fsi-demo.mobilebigbang.com/")
-    st.audio(os.path.join("resources", "contact_center_transcription.mp3"))
+    st.audio(os.path.join("resources", "contact_center", "contact_center_transcription.mp3"))
     with st.expander("녹취문 보기"):
         st.write(contact_center_transcription.transcription)
     with st.expander("System Prompt"):
