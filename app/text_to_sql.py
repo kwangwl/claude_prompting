@@ -22,25 +22,28 @@ def app():
     with st.expander("System Prompt"):
         st.write(SYSTEM)
 
-    # task
-    if 'session_text2sql' not in st.session_state:
-        st.session_state['session_text2sql'] = "Prompt를 입력하세요."
-
     st.subheader("작업")
+    with st.form(key='text_2_sql_form'):
+        if 'session_text2sql' not in st.session_state:
+            st.session_state['session_text2sql'] = "Prompt를 입력하세요."
 
-    # bedrock parameter
-    model_name = st.selectbox("Select Model (Claude 3)", list(MODEL_ID_INFO.keys()))
-    with st.expander("Claude Setting"):
-        max_token = st.number_input(label="Max Token", min_value=0, step=1, max_value=4096, value=2048, disabled=True)
-        temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.0, disabled=True)
-        top_p = st.number_input(label="Top P", min_value=0.000, step=0.001, max_value=1.000, value=0.999, format="%f",
-                                disabled=True)
+        st.subheader("작업")
+        # bedrock parameter
+        model_name = st.selectbox("Select Model (Claude 3)", list(MODEL_ID_INFO.keys()))
+        with st.expander("Claude Setting"):
+            max_token = st.number_input(label="Max Token", min_value=0, step=1, max_value=4096, value=2048, disabled=True)
+            temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.0, disabled=True)
+            top_p = st.number_input(label="Top P", min_value=0.000, step=0.001, max_value=1.000, value=0.999, format="%f",
+                                    disabled=True)
 
-    prompt_input = st.text_area("User Prompt 입력", height=300, key="text-to-sql",
-                                value=st.session_state['session_text2sql'])
+        prompt_input = st.text_area("User Prompt 입력", height=300, key="text-to-sql",
+                                    value=st.session_state['session_text2sql'])
+
+        # 폼 제출 버튼
+        submit_button = st.form_submit_button("쿼리 생성")
 
     # button
-    if st.button("쿼리 생성"):
+    if submit_button:
         # session 저장
         st.session_state['session_text2sql'] = prompt_input
 
