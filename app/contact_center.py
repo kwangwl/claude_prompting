@@ -23,31 +23,22 @@ SYSTEM = f"""
 
 
 def perform_task(task_name):
-    with st.form(key=f'{task_name}_form'):
-        key_name, description, button_name = TASK_INFO[task_name]
+    key_name, description, button_name = TASK_INFO[task_name]
 
-        # session 초기화
-        if f'session_{key_name}' not in st.session_state:
-            st.session_state[f'session_{key_name}'] = "Prompt를 입력하세요."
+    # session 초기화
+    if f'session_{key_name}' not in st.session_state:
+        st.session_state[f'session_{key_name}'] = "Prompt를 입력하세요."
 
-        # description
-        st.write(description)
-        st.write("\n")
+    # description
+    st.write(description)
+    st.write("\n")
 
-        # bedrock parameter
-        model_name = st.selectbox("Select Model (Claude 3)", list(MODEL_ID_INFO.keys()), key=f'model_name_{key_name}')
-        with st.expander("Claude Setting"):
-            max_token = st.number_input(label="Max Token", min_value=0, step=1, max_value=4096, value=2048,
-                                        key=f'max_token_{key_name}', disabled=True)
-            temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.0, key=f'temperature_{key_name}',
-                                    disabled=True)
-            top_p = st.number_input(label="Top P", min_value=0.000, step=0.001, max_value=1.000, value=0.999, format="%f",
-                                    key=f'top_p_{key_name}', disabled=True)
-        prompt_input = st.text_area("User Prompt 입력", key=f'prompt_input_{key_name}', height=400,
-                                    value=st.session_state[f'session_{key_name}'])
+    model_name = st.selectbox("Select Model", list(MODEL_ID_INFO.keys()))
+    prompt_input = st.text_area("User Prompt 입력", key=f'prompt_input_{key_name}', height=400,
+                                value=st.session_state[f'session_{key_name}'])
 
-        # 폼 제출 버튼
-        submit_button = st.form_submit_button(button_name)
+    # 폼 제출 버튼
+    submit_button = st.button(button_name)
 
     # button
     if submit_button:
@@ -57,9 +48,9 @@ def perform_task(task_name):
         parameter = {
             "anthropic_version": "bedrock-2023-05-31",
             "model_id": MODEL_ID_INFO[model_name],
-            "max_tokens": max_token,
-            "temperature": temperature,
-            "top_p": top_p,
+            "max_tokens": 2048,
+            "temperature": 0.0,
+            'top_p': 0.999
         }
         prompt = f"{SYSTEM}\n\n{prompt_input}"
         streaming_response = get_model_streaming_response(parameter, prompt)
@@ -76,7 +67,7 @@ def app():
     with col1:
         st.subheader("자동차 보험 상담")
     with col2:
-        st.link_button("FSI 데모 링크", "https://fsi-demo.mobilebigbang.com/")
+        st.link_button("FSI 데모 링크", "https://genai.fsi.kr/")
     st.audio(os.path.join("resources", "contact_center", "contact_center_transcription.mp3"))
     with st.expander("녹취문 보기"):
         st.write(contact_center_transcription.transcription)

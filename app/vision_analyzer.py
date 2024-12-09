@@ -20,23 +20,17 @@ def app():
         file_path = os.path.join(BASE_IMAGE_PATH, selected_image)
         st.image(file_path, caption=selected_image, width=500)
 
-    with st.form(key='vision_analyzer_form'):
-        if 'session_vision_analyzer' not in st.session_state:
-            st.session_state['session_vision_analyzer'] = "Prompt를 입력하세요."
+    if 'session_vision_analyzer' not in st.session_state:
+        st.session_state['session_vision_analyzer'] = "Prompt를 입력하세요."
 
-        # bedrock parameter
-        model_name = st.selectbox("Select Model (Claude 3)", list(MODEL_ID_INFO.keys()))
-        with st.expander("Claude Setting"):
-            max_token = st.number_input(label="Max Token", min_value=0, step=1, max_value=4096, value=4000, disabled=True)
-            temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.0, disabled=True)
-            top_p = st.number_input(label="Top P", min_value=0.000, step=0.001, max_value=1.000, value=0.999, format="%f",
-                                    disabled=True)
+    # bedrock parameter
+    model_name = st.selectbox("Select Model (Claude 3)", list(MODEL_ID_INFO.keys()))
 
-        prompt_input = st.text_area("User Prompt 입력", height=300, key="vision_analyzer",
-                                    value=st.session_state['session_vision_analyzer'])
+    prompt_input = st.text_area("User Prompt 입력", height=300, key="vision_analyzer",
+                                value=st.session_state['session_vision_analyzer'])
 
-        # 폼 제출 버튼
-        submit_button = st.form_submit_button("이미지 분석")
+    # 폼 제출 버튼
+    submit_button = st.button("이미지 분석")
 
     # button
     if submit_button:
@@ -46,9 +40,9 @@ def app():
         parameter = {
             "anthropic_version": "bedrock-2023-05-31",
             "model_id": MODEL_ID_INFO[model_name],
-            "max_tokens": max_token,
-            "temperature": temperature,
-            "top_p": top_p,
+            "max_tokens": 2048,
+            "temperature": 0.0,
+            'top_p': 0.999
         }
         file_path = os.path.join(BASE_IMAGE_PATH, selected_image)
         image_bytes = get_bytes_from_file(file_path)
