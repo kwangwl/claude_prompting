@@ -4,9 +4,9 @@ import json
 
 
 MODEL_ID_INFO = {
-    # "Sonnet 3.5": "anthropic.claude-3-5-sonnet-20240620-v1:0",
-    "Sonnet": "anthropic.claude-3-sonnet-20240229-v1:0",
-    "Haiku": "anthropic.claude-3-haiku-20240307-v1:0"
+    "Sonnet 3.5 v1": "anthropic.claude-3-5-sonnet-20240620-v1:0",
+    "Sonnet 3.0": "anthropic.claude-3-sonnet-20240229-v1:0",
+    "Haiku 3.0": "anthropic.claude-3-haiku-20240307-v1:0"
 }
 
 
@@ -65,6 +65,22 @@ def get_model_streaming_response(parameter, prompt):
     return streaming_response
 
 
+def retrieve_and_generate(questions, parameter):
+    bedrock_agent_runtime = get_client('bedrock-agent-runtime')
+
+    response = bedrock_agent_runtime.retrieve_and_generate(
+        input={'text': questions},
+        retrieveAndGenerateConfiguration={
+            'knowledgeBaseConfiguration': {
+                'knowledgeBaseId': parameter["kb_id"],
+                'modelArn': parameter["model_id"]
+            },
+            'type': 'KNOWLEDGE_BASE'
+        })
+
+    return response
+
+
 def get_model_image_response(parameter, prompt, image_type, image_bytes):
     bedrock_runtime = get_client('bedrock-runtime')
     input_image_base64 = get_base64_from_bytes(image_bytes)
@@ -96,7 +112,6 @@ def get_model_image_response(parameter, prompt, image_type, image_bytes):
     streaming_response = bedrock_runtime.invoke_model_with_response_stream(body=body, modelId=parameter["model_id"])
 
     return streaming_response
-
 
 
 def parse_stream(stream):
